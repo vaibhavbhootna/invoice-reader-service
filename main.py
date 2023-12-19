@@ -26,7 +26,9 @@ def read_invoice():
             pixel_values = tokenizer(images=image_bytes, return_tensors="pt").pixel_values
             generated_ids = model.generate(pixel_values)
             generated_text = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+            generated_text+= '</s_receipt>'
             receipt = xml_converter.parse_xml(generated_text)
+            receipt.file_name = invoice_image.filename;
             spreadsheets.append_data_to_sheet(receipt)
             return xml_converter.convert_to_json(receipt)
         else:

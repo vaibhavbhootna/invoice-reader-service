@@ -18,15 +18,14 @@ def append_data_to_sheet(receipt):
 
     # Flatten line_items into a list of lists
     values = [[
-        receipt.store_name,
-        receipt.store_addr,
-        receipt.telephone,
         receipt.date,
         receipt.time,
+        receipt.store_name,
         receipt.subtotal,
         item.item_name,
         item.item_value,
-        item.item_quantity
+        item.item_quantity,
+        receipt.file_name
     ] for item in receipt.line_items]
 
     body = {'values': values}

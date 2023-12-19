@@ -55,3 +55,6 @@ def parse_xml(xml_data):
             else:
                 setattr(line_item, tag, line.text)    
     return receipt
+
+def convert_to_json(receipt):
+    return json.dumps(receipt, cls=ReceiptEncoder)
