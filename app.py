@@ -7,6 +7,19 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+@app.route('/web-hook', methods=['POST'])
+def home():
+    if request.method == 'POST':
+        dict_messages = request.json['data']
+        if dict_messages != []:
+            message = dict_messages
+            msg_from = message['from'].split()
+            msg_text = message['body'].split()
+            print("sender phone number : " + msg_from[0])
+            print("message : " + msg_text[0])
+            return ''
+        
+
 @app.route('/read-invoice/', methods=['POST'])
 def read_invoice():
     csv_headers = ["Date", "Time", "Store Name", "Total", "Item Name", "Value", "Quantity", "File Name", "Processed At"]
