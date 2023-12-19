@@ -13,9 +13,12 @@ RUN apt-get update && \
 WORKDIR /app
 
 # Copy necessary files to the container
+COPY credentials.json .
 COPY requirements.txt .
 COPY main.py .
 COPY download_models.py .
+COPY spreadsheets.py .
+COPY xml_converter.py .
 
 # Create a virtual environment in the container
 RUN python3 -m venv .venv

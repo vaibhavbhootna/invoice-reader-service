@@ -2,6 +2,8 @@ from io import BytesIO
 from PIL import Image
 from flask import Flask, request
 from transformers import DonutProcessor, VisionEncoderDecoderModel
+import spreadsheets
+import xml_converter
 
 def get_model(model_path):
     """Load a Hugging Face model and tokenizer from the specified directory"""
@@ -24,9 +26,11 @@ def read_invoice():
             pixel_values = tokenizer(images=image_bytes, return_tensors="pt").pixel_values
             generated_ids = model.generate(pixel_values)
             generated_text = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
-            return generated_text
+            receipt = xml_converter.parse_xml(generated_text)
+            spreadsheets.append_data_to_sheet(receipt)
+            return xml_converter.convert_to_json(receipt)
         else:
-            return "Invalid file"
+            return 'Invalid'
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6000, debug=True)

@@ -5,3 +5,7 @@ sacremoses==0.0.53
 sentencepiece==0.1.99
 Pillow==9.4.0
 xmltodict
+google-auth 
+google-auth-oauthlib 
+google-auth-httplib2 
+google-api-python-client
