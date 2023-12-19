@@ -17,7 +17,7 @@ def home():
             msg_text = message['body'].split()
             print("sender phone number : " + msg_from[0])
             print("message : " + msg_text[0])
-            return ''
+            return 'vaibhav'
         
 
 @app.route('/read-invoice/', methods=['POST'])
