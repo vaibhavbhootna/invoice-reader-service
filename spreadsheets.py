@@ -23,7 +23,7 @@ def append_data_to_sheet(receipt):
         receipt.telephone,
         receipt.date,
         receipt.time,
-        receipt.,
+        receipt.subtotal,
         item.item_name,
         item.item_value,
         item.item_quantity

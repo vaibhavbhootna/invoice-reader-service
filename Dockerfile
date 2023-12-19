@@ -1,5 +1,5 @@
 # Use Ubuntu's current LTS
-FROM ubuntu:jammy-20230804
+FROM alpine:3.14
 # Make sure to not install recommends and to clean the 
 # install to minimize the size of the container as much as possible.
 RUN apt-get update && \
