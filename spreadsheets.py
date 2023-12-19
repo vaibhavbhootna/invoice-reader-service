@@ -25,7 +25,8 @@ def append_data_to_sheet(receipt):
         item.item_name,
         item.item_value,
         item.item_quantity,
-        receipt.file_name
+        receipt.file_name,
+        receipt.processed_at
     ] for item in receipt.line_items]
 
     body = {'values': values}
