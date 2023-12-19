@@ -7,8 +7,9 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-@app.route('/web-hook', methods=['POST'])
+@app.route('/web-hook', methods=['POST','GET'])
 def home():
+    print(request.json())
     if request.method == 'POST':
         dict_messages = request.json['data']
         if dict_messages != []:
@@ -18,6 +19,8 @@ def home():
             print("sender phone number : " + msg_from[0])
             print("message : " + msg_text[0])
             return 'vaibhav'
+    else:
+         return request.json['hub_challenge']
         
 
 @app.route('/read-invoice/', methods=['POST'])
